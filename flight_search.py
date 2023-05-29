@@ -38,12 +38,12 @@ class FlightSearch:
         response = requests.get(url=f"{TEQUILA_ENDPOINT}/v2/search", params=search_config, headers=headers)
         try:
             result = response.json()['data'][0]
-        except IndexError:
+        except (KeyError, IndexError):
             search_config['max_stopovers'] = 1
             response = requests.get(url=f"{TEQUILA_ENDPOINT}/v2/search", params=search_config, headers=headers)
             try:
                 data = response.json()['data'][0]
-            except IndexError:
+            except (KeyError, IndexError):
                 return None
             else:
                 flight_data = FlightData(
