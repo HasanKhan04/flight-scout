@@ -1,10 +1,10 @@
 import requests
 from flight_data import FlightData
+import os
 
-API_KEY = "x_4ZswXjwQ8gKUOKTOlXDpwEmZCENxU1"
 TEQUILA_ENDPOINT = "https://api.tequila.kiwi.com"
 headers = {
-    "apikey": API_KEY
+    "apikey": os.environ.get('TEQUILA_KEY')
 }
 
 
